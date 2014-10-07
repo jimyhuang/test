@@ -21,7 +21,8 @@ install:
 
 before_script:
   # php environment
-  - phpenv config-add travis-php-env.ini
+  # phpenv config-add travis-php-env.ini
+  - echo 'date.timezone="Asia/Taipei"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   
 script:
   - phpunit test-travis.php
