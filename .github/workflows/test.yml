@@ -22,7 +22,7 @@ jobs:
           secure: false
           ignore_cert: true
           convert_markdown: true
-          subject: "[${{ github.repository }}] Run ${{ job.status }}: ${GITHUB_WORKFLOW} - ${{github.ref_name}} (${{steps.vars.outputs.sha_short}})"
+          subject: "[${{ github.repository }}] Run ${{ job.status }}: ${{github.workflow}} - ${{github.ref_name}} (${{steps.vars.outputs.sha_short}})"
           body: |
             Executed by: ${{github.actor}}
             Job name: ${{github.job}}
