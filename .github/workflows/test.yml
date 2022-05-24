@@ -2,7 +2,7 @@ name: Send email testing
 on: [push, pull_request]
 jobs:
   notification:
-    if: ${{ always() }}
+    if: ${{ success() }}
     runs-on: ubuntu-latest
     steps:
       - name: Shorten sha 
@@ -22,7 +22,7 @@ jobs:
           secure: false
           ignore_cert: true
           convert_markdown: true
-          subject: "[${{ github.repository }}] Run ${{ job.status }}: ${{github.workflow}} - ${{github.ref_name}} (${{steps.vars.outputs.sha_short}})"
+          subject: "[${{ github.repository }}] Run succeeded: ${{github.workflow}} - ${{github.ref_name}} (${{steps.vars.outputs.sha_short}})"
           body: |
             Executed by: ${{github.actor}}
             Job name: ${{github.job}}
