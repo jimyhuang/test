@@ -28,5 +28,7 @@ jobs:
             Job name: ${{github.job}}
             Repository: ${{github.repository}}
             Status: ${{job.status}}
+            SHA: ${{github.sha}}
+            Message: ${{ github.event.head_commit.message }}
             Link: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}
 
