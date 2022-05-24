@@ -2,7 +2,7 @@ name: Send email testing
 on: [push, pull_request]
 jobs:
   notification:
-    if: ${{ success() }}
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: Shorten sha 
@@ -18,11 +18,11 @@ jobs:
           username: ${{secrets.NETIVISM_EMAIL_LOGIN}}
           password: ${{secrets.NETIVISM_EMAIL_PASSWD}}
           to: ${{secrets.NETIVISM_NOTIFICATION_TARGET}}
-          from: Github Notification
+          from: Github Workflow
           secure: false
           ignore_cert: true
           convert_markdown: true
-          subject: "[${{ github.repository }}] Run succeeded: ${{github.workflow}} - ${{github.ref_name}} (${{steps.vars.outputs.sha_short}})"
+          subject: "[${{github.repository}}] Run ${{job.status}}: ${{github.workflow}} - ${{github.ref_name}} (${{steps.vars.outputs.sha_short}})"
           body: |
             Executed by: ${{github.actor}}
             Job name: ${{github.job}}
