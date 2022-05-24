@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Shorten sha 
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+
 
       - name: Notification
         uses: dawidd6/action-send-mail@v3
@@ -21,7 +21,7 @@ jobs:
           secure: false
           ignore_cert: true
           convert_markdown: true
-          subject: "[${{ github.repository }}] Run ${{ job.status }}: CI Testing - ${{github.ref_name}} (${{ steps.vars.outputs.sha_short }})"
+          subject: "[${{ github.repository }}] Run ${{ job.status }}: CI Testing - ${{github.ref_name}} (${{SHORT_SHA}})"
           body: |
             Executed by: ${{github.actor}}
             Job name: ${{github.job}}
