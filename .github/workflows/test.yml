@@ -14,7 +14,7 @@ jobs:
           password: ${{secrets.NETIVISM_EMAIL_PASSWD}}
           to: ${{secrets.NETIVISM_NOTIFICATION_TARGET}}
           from: Github Notification
-          secure: false
+          secure: true
           ignore_cert: true
           convert_markdown: true
           subject: "[${{ github.repository }}] Run ${{ job.status }}: CI Testing - (${{github.ref_name}})"
